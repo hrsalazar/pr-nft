@@ -7,18 +7,25 @@
 const hre = require("hardhat");
 
 async function main() {
-  //const uint id = 1;
-  //const string propietario = 'Jorge Barrera';
+
   const facturaFactory = await hre.ethers.getContractFactory("Factura");
-  const factura = await facturaFactory.deploy(1);
+  const factura = await facturaFactory.deploy();
 
   await factura.deployed();
 
-  console.log('Factura creada');
+  console.log('Contrato Creado');
   console.log('Contract deployed: ' + factura.address);
 
-  await factura.setPropietario('Jorge Barrera');
-  
+  await factura.crear('123456');
+  await factura.addDocumento('123456', 'Mexico','Tucson', '2017', 'SUV');
+
+  const ownerAddress = await factura.getAddress('123456');
+  const modelo = await factura.getDocumento('123456')
+  const paisOrigen = await factura.getPaisOrigen('123456');
+
+  console.log('Direccion Factura: ' + ownerAddress);
+  console.log('paisOrigen: ' + paisOrigen);
+
 }
 
 // We recommend this pattern to be able to use async/await everywhere

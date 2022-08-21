@@ -5,9 +5,13 @@ require("dotenv").config({ path: ".env" });
 module.exports = {
   solidity: "0.8.10",
   networks: {
-    mumbai: {
+    hardhat: {},
+    m1: {
       url: process.env.ALCHEMY_MUMBAI_URL,
-      accounts: [process.env.PRIVATE_KEY],
+      accounts: [process.env.PRIVATE_KEY2],
+    },
+    m2: {
+      url: process.env.ALCHEMY_MUMBAI_URL
     }
   }
 };
